@@ -52,6 +52,90 @@ const exerciseReferences = {
     images: ['/exercises/tue-plank-forearm.png', '/exercises/tue-plank-high.png'],
     cue: 'Keep a straight line from shoulders to heels. Brace your abs and glutes while breathing steadily.',
   },
+  'WED-0': {
+    images: ['/exercises/wed-walk-promenade.png', '/exercises/wed-walk-promenade-stride.png'],
+    cue: 'Walk at a comfortable, steady pace. Stand tall, relax your shoulders, and let your arms swing naturally.',
+  },
+  'WED-1': {
+    images: ['/exercises/wed-skipping-jump.png', '/exercises/wed-skipping-ready.png'],
+    cue: 'Stay light on your feet with soft knees. Turn the rope from your wrists and keep the pace controlled.',
+  },
+  'THU-0': {
+    images: ['/exercises/thu-master-pullup.png', '/exercises/thu-pullup-bottom.png'],
+    cue: 'Begin from a controlled hang with your shoulders engaged. Pull smoothly without swinging your legs.',
+  },
+  'THU-1': {
+    images: ['/exercises/thu-elevated-pushup-low.png', '/exercises/thu-elevated-pushup-top.png'],
+    cue: 'Keep your body rigid as you lower toward the floor. Press up without letting the hips sag.',
+  },
+  'THU-2': {
+    images: ['/exercises/thu-row-pull.png', '/exercises/thu-row-start.png'],
+    cue: 'Brace yourself on the bench, keep a neutral back, and pull the dumbbell toward your hip without twisting.',
+  },
+  'THU-3': {
+    images: ['/exercises/thu-lateral-raise-top.png', '/exercises/thu-lateral-raise-start.png'],
+    cue: 'Raise the weights with control to shoulder height. Keep your shoulders down and avoid shrugging.',
+  },
+  'THU-4': {
+    images: ['/exercises/thu-bench-press-top.png', '/exercises/thu-bench-press-low.png'],
+    cue: 'Keep your feet planted and shoulders stable. Lower the dumbbells with control, then press smoothly.',
+  },
+  'THU-5': {
+    images: ['/exercises/thu-hammer-curl-mid.png', '/exercises/thu-hammer-curl-start.png'],
+    cue: 'Keep your palms facing inward and elbows near your ribs. Avoid swinging as you curl and lower.',
+  },
+  'FRI-0': {
+    images: ['/exercises/fri-master-bulgarian.png', '/exercises/fri-bulgarian-top.png'],
+    cue: 'Use a stable stance with most of your weight through the front foot. Lower smoothly, then drive back up.',
+  },
+  'FRI-1': {
+    images: ['/exercises/fri-goblet-low.png', '/exercises/fri-goblet-top.png'],
+    cue: 'Hold the dumbbell close to your chest, keep heels down, and let your knees track naturally as you squat.',
+  },
+  'FRI-2': {
+    images: ['/exercises/fri-rdl-low.png', '/exercises/fri-rdl-top.png'],
+    cue: 'Hinge from the hips and keep the dumbbells close. Return to standing by squeezing your glutes.',
+  },
+  'FRI-3': {
+    images: ['/exercises/fri-reverse-lunge-low.png', '/exercises/fri-reverse-lunge-top.png'],
+    cue: 'Step back softly and keep the front foot planted. Keep your torso tall as you lower and rise.',
+  },
+  'FRI-4': {
+    images: ['/exercises/fri-bicycle-crunch-left.png', '/exercises/fri-bicycle-crunch-right.png'],
+    cue: 'Rotate through your torso while keeping the neck relaxed. Move slowly and alternate sides with control.',
+  },
+  'FRI-5': {
+    images: ['/exercises/fri-plank-forearm.png', '/exercises/fri-plank-high.png'],
+    cue: 'Brace your abs and glutes to maintain one straight line from shoulders through heels.',
+  },
+  'SAT-0': {
+    images: ['/exercises/sat-master-pushup-pink.png', '/exercises/sat-pushup-top.png'],
+    cue: 'Keep your body in one straight line. Lower under control and press back up without dropping your hips.',
+  },
+  'SAT-1': {
+    images: ['/exercises/sat-goblet-low.png', '/exercises/sat-goblet-top.png'],
+    cue: 'Keep the dumbbell close to your chest, heels grounded, and knees tracking naturally through the squat.',
+  },
+  'SAT-2': {
+    images: ['/exercises/sat-pullup-top.png', '/exercises/sat-pullup-bottom.png'],
+    cue: 'Use a controlled hang and pull without swinging. Keep your shoulders engaged at the bottom.',
+  },
+  'SAT-3': {
+    images: ['/exercises/sat-rdl-low.png', '/exercises/sat-rdl-top.png'],
+    cue: 'Hinge at the hips with dumbbells close to your legs. Stand up by squeezing your glutes.',
+  },
+  'SAT-4': {
+    images: ['/exercises/sat-shoulder-press-top.png', '/exercises/sat-shoulder-press-low.png'],
+    cue: 'Brace your core and keep ribs controlled. Press overhead smoothly and lower to shoulder height.',
+  },
+  'SAT-5': {
+    images: ['/exercises/sat-plank-forearm.png', '/exercises/sat-plank-high.png'],
+    cue: 'Squeeze your abs and glutes to hold a straight body line while breathing steadily.',
+  },
+  'SAT-6': {
+    images: ['/exercises/sat-skipping-jump.png', '/exercises/sat-skipping-ready.png'],
+    cue: 'Keep the jumps light and low. Turn the rope from your wrists with relaxed shoulders.',
+  },
 }
 
 export default function App() {

@@ -4,6 +4,7 @@ import { todayKey, workouts } from './workouts'
 const read = (key, fallback) => JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback))
 const dateKey = (date = new Date()) => date.toISOString().slice(0, 10)
 const dayForDate = (date) => ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'][date.getDay()]
+const optimizedImage = (src) => src.replace(/\.png$/, '.jpg')
 
 const exerciseReferences = {
   'MON-0': {
@@ -154,11 +155,28 @@ export default function App() {
   const [complete, setComplete] = useState(() => read('fitness-complete', {}))
   const [history, setHistory] = useState(() => read('fitness-history-v1', {}))
   const [logs, setLogs] = useState(() => read('fitness-logs', []))
+  const [openReference, setOpenReference] = useState(null)
   const workout = workouts.find(({ key }) => key === selected)
 
   useEffect(() => localStorage.setItem('fitness-complete', JSON.stringify(complete)), [complete])
   useEffect(() => localStorage.setItem('fitness-history-v1', JSON.stringify(history)), [history])
   useEffect(() => localStorage.setItem('fitness-logs', JSON.stringify(logs)), [logs])
+  useEffect(() => {
+    // Fetch only the selected day's lightweight photos after the interface is ready.
+    // They will already be in the browser cache when a form panel is opened.
+    const prefetch = () => workout.items.flatMap((_, index) =>
+      exerciseReferences[`${selected}-${index}`]?.images || [],
+    ).forEach(src => {
+      const image = new Image()
+      image.src = optimizedImage(src)
+    })
+    const idleId = window.requestIdleCallback?.(prefetch, { timeout: 1200 })
+    const timerId = idleId === undefined ? window.setTimeout(prefetch, 250) : undefined
+    return () => {
+      if (idleId !== undefined) window.cancelIdleCallback?.(idleId)
+      if (timerId !== undefined) window.clearTimeout(timerId)
+    }
+  }, [selected, workout])
 
   const average = (index) => {
     const values = logs.slice(0, index + 1).reverse().map(x => Number(x.weight)).filter(Boolean).slice(0, 7)
@@ -204,7 +222,7 @@ export default function App() {
 
     <section className="hero"><span>Today · {today}</span><h2>{workouts.find(x => x.key === today).title}</h2><p>Small, consistent sessions. Aim for 10,000+ steps.</p></section>
 
-    <nav aria-label="Workout days">{workouts.map(({ key }) => <button key={key} className={selected === key ? 'active' : ''} onClick={() => setSelected(key)}>{key}</button>)}</nav>
+    <nav aria-label="Workout days">{workouts.map(({ key }) => <button key={key} className={selected === key ? 'active' : ''} onClick={() => { setSelected(key); setOpenReference(null) }}>{key}</button>)}</nav>
 
     <section className="card">
       <div className="card-title"><div><p className="eyebrow">WORKOUT</p><h2>{workout.title}</h2></div><span>{workout.items.length} exercises</span></div>
@@ -216,12 +234,11 @@ export default function App() {
             <input type="checkbox" checked={Boolean(complete[id])} onChange={() => toggle(id)} />
             <span><b>{name}</b><small>{rest ? `${rest} rest` : 'Move with control'}</small></span><strong>{reps}</strong>
           </label>
-          {reference && <details className="form-reference">
+          {reference && <details className="form-reference" open={openReference === id} onToggle={event => setOpenReference(event.currentTarget.open ? id : null)}>
             <summary>View form photos</summary>
-            <div className="reference-gallery">
-              {reference.images.map((src, imageIndex) => <img key={src} src={src} alt={`${name}: correct form reference ${imageIndex + 1}`} />)}
-            </div>
-            <p>{reference.cue}</p>
+            {openReference === id && <><div className="reference-gallery">
+              {reference.images.map((src, imageIndex) => <img key={src} src={optimizedImage(src)} alt={`${name}: correct form reference ${imageIndex + 1}`} fetchPriority="high" />)}
+            </div><p>{reference.cue}</p></>}
           </details>}
         </div>
       })}</div>
